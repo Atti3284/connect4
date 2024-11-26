@@ -3,7 +3,7 @@ package com.example.connect4;
 
 import java.util.Scanner;
 
-public class Main{
+public class Game {
     public static void main(String[] args) {
         Scanner beolvas = new Scanner(System.in);
         Tabla tabla = new Tabla();
@@ -29,7 +29,7 @@ public class Main{
                 continue;
             }
 
-            // Gép lép
+            // Gép lép.
             System.out.println("A gép lép...");
             String gepLepes = gep.lep(tabla);
             tabla.lepes(gepLepes, gep);
@@ -39,6 +39,6 @@ public class Main{
                 jatekVege = true;
             }
         }
-        beolvas.close();//vége
+        beolvas.close();
     }
 }
