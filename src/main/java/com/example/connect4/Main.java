@@ -39,6 +39,6 @@ public class Main{
                 jatekVege = true;
             }
         }
-        beolvas.close();
+        beolvas.close();//vége
     }
 }
