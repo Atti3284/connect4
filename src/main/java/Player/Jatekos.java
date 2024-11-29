@@ -1,7 +1,7 @@
-package com.example.connect4;
+package Player;
 
 
-public class Jatekos {
+public class Jatekos implements JatekosInterface{
     private final String jel;
 
     public Jatekos(String szin) {
@@ -11,4 +11,6 @@ public class Jatekos {
     public String getJel() {
         return jel;
     }
+
+
 }
