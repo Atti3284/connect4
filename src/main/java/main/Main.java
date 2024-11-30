@@ -1,10 +1,9 @@
 /*
 package com.example;
 
-
 import Board.Tabla;
 import RandomAI.Gep;
-import Player.Jatekos;
+import Players.Jatekos;
 
 import java.util.Scanner;
 
@@ -48,12 +47,12 @@ public class Game {
     }
 }
 */
-
+/*
 package com.example;
 
 import Board.Tabla;
 import RandomAI.Gep;
-import Player.Jatekos;
+import Players.Jatekos;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -80,7 +79,11 @@ public class Game {
         kimenet.println("Üdv az Amőba4 játékban!");
         tabla.megjelenit();
 
+
         while (!jatekVege) {
+
+
+
             // Ember lép
             kimenet.println("Te jössz, válassz egy oszlopot (pl. '1', '2', ... ,'7'):");
             String oszlop = beolvas.nextLine();
@@ -88,6 +91,8 @@ public class Game {
                 kimenet.println("Nem érvényes lépés, próbáld újra:");
                 oszlop = beolvas.nextLine();
             }
+
+
             tabla.megjelenit();
             if (tabla.nyeres(ember)) {
                 kimenet.println("Gratulálok, nyertél!");
@@ -105,5 +110,36 @@ public class Game {
                 jatekVege = true;
             }
         }
+        beolvas.close();
     }
+}*/
+package main;
+
+import Controller.GameController;
+import players.AIPlayer;
+import players.HumanPlayer;
+import players.Player;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Válassz: 1 a játékosnak, 2 az AI-nek");
+        int choice = scanner.nextInt();
+
+        Player humanPlayer = new HumanPlayer('P');
+        Player aiPlayer = new AIPlayer('A');
+
+        GameController gameController;
+        if (choice == 1) {
+            gameController = new GameController(humanPlayer, aiPlayer);
+        } else {
+            gameController = new GameController(aiPlayer, humanPlayer);
+        }
+
+        gameController.startGame();
+    }
+
 }
