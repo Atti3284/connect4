@@ -1,9 +1,8 @@
-package Controller;
+package me.nagyattila.main.Controller;
 
-import Board.BoardManager;
-import model.Move;
-import players.AIPlayer;
-import players.Player;
+import me.nagyattila.main.Board.BoardManager;
+import me.nagyattila.main.model.Move;
+import me.nagyattila.main.players.Player;
 
 import java.util.Scanner;
 

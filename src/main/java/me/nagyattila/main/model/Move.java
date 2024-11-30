@@ -1,4 +1,4 @@
-package model;
+package me.nagyattila.main.model;
 
 public class Move {
     private final int column;

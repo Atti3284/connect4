@@ -83,9 +83,9 @@ public class BoardManager {
         return true;
     }
 }*/
-package Board;
+package me.nagyattila.main.Board;
 
-import model.Move;
+import me.nagyattila.main.model.Move;
 
 import java.util.ArrayList;
 import java.util.List;

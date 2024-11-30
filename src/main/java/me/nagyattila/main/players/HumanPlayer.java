@@ -1,7 +1,7 @@
-package players;
+package me.nagyattila.main.players;
 
-import model.Move;
-import Board.BoardManager;
+import me.nagyattila.main.model.Move;
+import me.nagyattila.main.Board.BoardManager;
 import java.util.Scanner;
 public class HumanPlayer extends Player {
     public HumanPlayer(char symbol) {

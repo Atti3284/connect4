@@ -16,12 +16,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.24.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <version>5.10.0</version>
@@ -34,7 +28,6 @@
       <version>5.14.1</version>
       <scope>test</scope>
     </dependency>
-
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -52,7 +45,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.example.Game</mainClass>
+              <mainClass>me.nagyattila.main.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -68,7 +61,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>com.example.Game</mainClass>
+              <mainClass>me.nagyattila.main.Main</mainClass>
             </manifest>
           </archive>
         </configuration>

@@ -1,7 +1,7 @@
-package players;
+package me.nagyattila.main.players;
 
-import Board.BoardManager;
-import model.Move;
+import me.nagyattila.main.Board.BoardManager;
+import me.nagyattila.main.model.Move;
 
 public abstract class Player {
     private final char symbol;

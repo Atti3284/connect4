@@ -113,12 +113,12 @@ public class Game {
         beolvas.close();
     }
 }*/
-package main;
+package me.nagyattila.main;
 
-import Controller.GameController;
-import players.AIPlayer;
-import players.HumanPlayer;
-import players.Player;
+import me.nagyattila.main.Controller.GameController;
+import me.nagyattila.main.players.AIPlayer;
+import me.nagyattila.main.players.HumanPlayer;
+import me.nagyattila.main.players.Player;
 
 import java.util.Scanner;
 
