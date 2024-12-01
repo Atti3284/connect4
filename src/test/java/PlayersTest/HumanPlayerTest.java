@@ -1,8 +1,9 @@
 
 package PlayersTest;
 
-
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
 
 import me.nagyattila.main.Board.BoardManager;
 import me.nagyattila.main.model.Move;
@@ -14,9 +15,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class HumanPlayerTest {
 
@@ -37,7 +35,7 @@ class HumanPlayerTest {
         // Bemeneti adat szimulálása (oszlop: 3)
         String input = "3\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        System.setIn(in);  // Szimulált bemenet
 
         // Lépés
         Move move = humanPlayer.makeMove(mockBoardManager);
@@ -55,7 +53,7 @@ class HumanPlayerTest {
         // Bemeneti adat szimulálása: érvénytelen (szöveg), majd érvényes (2)
         String input = "rosszBemenet\n2\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        System.setIn(in);  // Szimulált bemenet
 
         // Lépés
         Move move = humanPlayer.makeMove(mockBoardManager);
@@ -73,7 +71,7 @@ class HumanPlayerTest {
         // Bemeneti adat szimulálása: oszlop 0
         String input = "0\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        System.setIn(in);  // Szimulált bemenet
 
         // Lépés
         Move move = humanPlayer.makeMove(mockBoardManager);

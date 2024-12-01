@@ -1,4 +1,3 @@
-
 package me.nagyattila.main.Board;
 
 import me.nagyattila.main.model.Move;

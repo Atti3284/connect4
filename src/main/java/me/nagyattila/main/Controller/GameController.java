@@ -26,40 +26,7 @@ public class GameController {
         this.databaseManager = databaseManager;
     }
 
-
     public void start() {
-        boolean gameOver = false;
-        int moveCount = 0;  // Számláló, hogy elkerüljük a végtelen ciklust
-        while (!gameOver && moveCount < 2) {  // A teszt szempontjából két lépés elég
-            boardManager.printBoard();
-
-            Move playerMove = player.makeMove(boardManager);
-            if (boardManager.applyMove(playerMove) && boardManager.checkWinCondition(playerMove)) {
-                System.out.println("Gratulálok, nyertél!");
-                databaseManager.recordWin(((HumanPlayer) player).getName());
-                gameOver = true;
-                break;
-            }
-
-            Move aiMove = aiPlayer.makeMove(boardManager);
-            if (boardManager.applyMove(aiMove) && boardManager.checkWinCondition(aiMove)) {
-                System.out.println("Sajnálom, az AI nyert!");
-                databaseManager.recordWin("AI");
-                gameOver = true;
-                break;
-            }
-
-            moveCount++;  // Növeljük a lépések számát
-        }
-
-        boardManager.printBoard();
-        System.out.println("High Score táblázat:");
-        for (String score : databaseManager.getHighScores()) {
-            System.out.println(score);
-        }
-    }
-
-    /*public void start() {
         boolean gameOver = false;
         while (!gameOver) {
             boardManager.printBoard();
@@ -83,5 +50,5 @@ public class GameController {
         for (String score : databaseManager.getHighScores()) {
             System.out.println(score);
         }
-    }*/
+    }
 }

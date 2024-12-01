@@ -1,53 +1,5 @@
 package DatabaseTest;
-/*
-import me.nagyattila.main.Database.DatabaseManager;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-class DatabaseManagerTest {
-    private DatabaseManager databaseManager;
-
-    @BeforeEach
-    void setUp() {
-        databaseManager = new DatabaseManager();
-    }
-
-    @Test
-    void testRecordWin_NewPlayer() {
-        databaseManager.recordWin("Péter");
-        assertTrue(databaseManager.getHighScores().contains("Péter: 1 győzelem"));
-    }
-
-//    @Test
-//    void testRecordWin_ExistingPlayer() {
-//        databaseManager.recordWin("Péter");
-//        databaseManager.recordWin("Péter");
-//        assertTrue(databaseManager.getHighScores().contains("Péter: 2 győzelem"));
-//    }
-    @Test
-    void testRecordWin_ExistingPlayer() {
-        databaseManager.recordWin("Péter");
-        databaseManager.recordWin("Péter");
-
-        // Ellenőrizzük, hogy Péter neve és győzelmei a high scores között szerepelnek
-        List<String> highScores = databaseManager.getHighScores();
-        System.out.println("High Scores: " + highScores);  // Debugging output
-
-        assertTrue(highScores.contains("Péter: 2 győzelem"));
-    }
-    @Test
-    void testGetHighScores() {
-        databaseManager.recordWin("Péter");
-        databaseManager.recordWin("Gábor");
-        assertTrue(databaseManager.getHighScores().contains("Péter: 1 győzelem"));
-        assertTrue(databaseManager.getHighScores().contains("Gábor: 1 győzelem"));
-    }
-
-}*/
 import me.nagyattila.main.Database.DatabaseManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
