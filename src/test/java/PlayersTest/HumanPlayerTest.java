@@ -1,3 +1,4 @@
+
 package PlayersTest;
 
 
@@ -25,7 +26,7 @@ class HumanPlayerTest {
     @BeforeEach
     void setUp() {
         mockBoardManager = mock(BoardManager.class); // Mockoljuk a BoardManager-t
-        humanPlayer = new HumanPlayer('H'); // HumanPlayer 'H' szimbólummal
+        humanPlayer = new HumanPlayer("Player1",'H'); // HumanPlayer 'H' szimbólummal
     }
 
     @Test

@@ -1,60 +1,58 @@
-/*
+
 package GameControllerTest;
 
-import me.nagyattila.main.model.Move;
 import me.nagyattila.main.Board.BoardManager;
 import me.nagyattila.main.Controller.GameController;
+import me.nagyattila.main.Database.DatabaseManager;
+import me.nagyattila.main.model.Move;
+import me.nagyattila.main.players.HumanPlayer;
 import me.nagyattila.main.players.Player;
-
+import me.nagyattila.main.players.AIPlayer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import java.io.ByteArrayInputStream;
-
 import static org.mockito.Mockito.*;
-public class GameCTest {
-    @Test
-    void testGameEndsWhenPlayerWins() {
-        BoardManager mockBoardManager = mock(BoardManager.class);
-        Player mockPlayer = mock(Player.class);
 
-        // Szimuláljuk a bemenetet, mintha a játékos 0-ás oszlopot választott volna
-        String input = "0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes())); // szimulált bemenet a Scanner-nek
+class GameCTest {
 
-        // Mockoljuk a játékmenet során szükséges metódusokat
-        when(mockPlayer.makeMove(mockBoardManager)).thenReturn(new Move(0, 'P'));
-        when(mockBoardManager.applyMove(any(Move.class))).thenReturn(true);
-        when(mockBoardManager.checkWinCondition(any(Move.class))).thenReturn(true);
+    private BoardManager boardManager;
+    private HumanPlayer humanPlayer;
+    private AIPlayer aiPlayer;
+    private DatabaseManager databaseManager;
+    private GameController gameController;
 
-        // Indítjuk a játékot
-        GameController gameController = new GameController(mockPlayer, mockPlayer);
-        gameController.startGame();
+    @BeforeEach
+    void setUp() {
+        boardManager = mock(BoardManager.class);
+        humanPlayer = mock(HumanPlayer.class);
+        aiPlayer = mock(AIPlayer.class);
+        databaseManager = mock(DatabaseManager.class);
 
-        // Ellenőrizzük, hogy a win condition ellenőrzés megtörtént
-        verify(mockBoardManager, atLeastOnce()).checkWinCondition(any(Move.class)); // Ellenőrizzük, hogy legalább egyszer meghívták
+        // Az új konstruktor használata a mock objektumokkal
+        gameController = new GameController(boardManager, humanPlayer, aiPlayer, databaseManager);
     }
+
     @Test
-    void testGameEndsWhenPlayerLoses() {
-        // Mockoljuk a BoardManager-t és a játékost
-        BoardManager mockBoardManager = mock(BoardManager.class);
-        Player mockPlayer = mock(Player.class);
+    void testGameFlow() {
+        // Mockoljuk a bemeneti lépéseket
+        when(humanPlayer.makeMove(boardManager)).thenReturn(new Move(0, 'P'));  // Az emberi játékos 0. oszlopba lép
+        when(aiPlayer.makeMove(boardManager)).thenReturn(new Move(1, 'A'));     // Az AI 1. oszlopba lép
 
-        // Szimuláljuk a bemenetet, mintha a játékos 0-ás oszlopot választott volna
-        String input = "0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes())); // Szimulált bemenet a Scanner-nek
-
-        // Mockoljuk a játékmenet során szükséges metódusokat
-        when(mockPlayer.makeMove(mockBoardManager)).thenReturn(new Move(0, 'P'));  // A játékos lépése
-        when(mockBoardManager.applyMove(any(Move.class))).thenReturn(true);  // A lépés érvényes
-        when(mockBoardManager.checkWinCondition(any(Move.class))).thenReturn(false);  // A győzelem feltételét nem teljesíti, tehát nem nyer
+        // Mockoljuk a BoardManager viselkedését
+        when(boardManager.applyMove(any(Move.class))).thenReturn(true);  // Az applyMove mindig sikeres
+        when(boardManager.checkWinCondition(any(Move.class))).thenReturn(false);  // Nincs győzelem minden lépés után
 
         // Indítjuk a játékot
-        GameController gameController = new GameController(mockPlayer, mockPlayer);
-        gameController.startGame();
+        gameController.start();  // A start metódus most biztosan befejeződik
 
-        // Ellenőrizzük, hogy a win condition nem lett meghívva (ne győzzön)
-        verify(mockBoardManager, atLeastOnce()).checkWinCondition(any(Move.class));  // Ellenőrizzük, hogy legalább egyszer meghívták
+        // Ellenőrizzük, hogy a GameController-ban az applyMove és a checkWinCondition hívások megtörténtek
+        ArgumentCaptor<Move> moveCaptor = ArgumentCaptor.forClass(Move.class);
+        verify(boardManager, times(4)).applyMove(moveCaptor.capture());
+        verify(boardManager, times(4)).checkWinCondition(moveCaptor.capture());
+
+        // Ellenőrizzük, hogy a játék nem döntött még győztesről
+        verify(databaseManager, never()).recordWin(anyString());
     }
 }
-*/
